@@ -6,7 +6,7 @@ See [Automated Nginx Reverse Proxy for Docker][2] for why you might want to use 
 
 To run it:
 
-    $ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
+    $ docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock bartt/nginx-proxy
 
 Then start any containers you want proxied with an env var `VIRTUAL_HOST=subdomain.youdomain.com`
 
@@ -23,13 +23,13 @@ If your container exposes multiple ports, nginx-proxy will default to the servic
 
 ### Multiple Hosts
 
-If you need to support multipe virtual hosts for a container, you can separate each enty with commas.  For example, `foo.bar.com,baz.bar.com,bar.com` and each host will be setup the same.
+If you need to support multipe virtual hosts for a container, you can separate each entity with commas.  For example, `foo.bar.com,baz.bar.com,bar.com` and each host will be setup the same.
 
 ### SSL Certificates per Host
 
 Also open port 443 on the proxy and give the container access to the directory with the SSL certificates of the hosts:
 
-    $ docker run -d -p 80:80 -p 443:443 -v /var/run/docker.sock:/tmp/docker.sock -v /host/ssl:/ssl jwilder/nginx-proxy
+    $ docker run -d -p 80:80 -p 443:443 -v /var/run/docker.sock:/tmp/docker.sock -v /host/ssl:/ssl bartt/nginx-proxy
 
 Then start containers that should use HTTPS over HTTP with 2 additional env vars with the names of the certificate and key in the `/ssl` directory:
 
